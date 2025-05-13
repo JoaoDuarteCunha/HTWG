@@ -2,11 +2,14 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
+messages = []
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    message = messages.pop(0)
+    return message
 
-@app.get("/test/{item_id}")
-async def get_test(item_id: str):
-    print("Cookies:", item_id)
+@app.post("/send/{message}")
+async def create_item(message: str):
+    messages.append(message)
+    return message
