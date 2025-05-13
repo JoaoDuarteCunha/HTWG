@@ -8,8 +8,6 @@ app = FastAPI()
 
 messages = []
 
-class Message
-
 @app.get("/")
 async def root():
     message = messages.pop(0)
